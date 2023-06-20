@@ -55,10 +55,10 @@ public class SigInTest {
 
     @Test
     public void validateTelegramSignUp() {
-        SignInPage signUpPage = new SignInPage(page);
-        signUpPage.navigate();
-        signUpPage.closeMessage();
-        signUpPage.signUpWithTelegram();
-        signUpPage.validateTelegram();
+        SignInPage signInPage = new SignInPage(page);
+        signInPage.navigate();
+        signInPage.closeMessage();
+        signInPage.signUpWithTelegram();
+        signInPage.validateTelegram();
     }
 }

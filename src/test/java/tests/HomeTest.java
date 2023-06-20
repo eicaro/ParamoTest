@@ -6,6 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import utils.Config;
 import pages.HomePage;
+import utils.Sleeper;
+
 public class HomeTest {
     private Page page;
     @BeforeEach
@@ -23,6 +25,7 @@ public class HomeTest {
     public void checkAlertMessageAndClose() {
         HomePage home = new HomePage(page);
         home.navigate();
+        Sleeper.waitRandomInterval();
         home.checkAlertMessage();
         home.closeMessage();
         home.validateHidden();
@@ -32,7 +35,6 @@ public class HomeTest {
         HomePage home = new HomePage(page);
         home.navigate();
         home.closeMessage();
-        page.pause();
         home.checkMainImage();
     }
     @Test
@@ -40,7 +42,9 @@ public class HomeTest {
         HomePage home = new HomePage(page);
         home.navigate();
         home.closeMessage();
+        home.displaySignInButton();
         home.clickSignInButton();
+        home.validateSignInForm();
     }
     @Test
     public void navigateToSignUp() {
@@ -48,6 +52,7 @@ public class HomeTest {
         home.navigate();
         home.closeMessage();
         home.clickSignUpButton();
+        home.validateSignUpForm();
     }
 }
 

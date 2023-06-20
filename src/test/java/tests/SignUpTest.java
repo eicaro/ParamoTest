@@ -49,16 +49,6 @@ public class SignUpTest {
         signUpPage.signUpWithTelegram();
         signUpPage.validateTelegram();
     }
-/*
-    @Test
-    public void loginWithEmail() {
-        SignUpPage signUpPage = new SignUpPage(page);
-        signUpPage.navigate2();
-        signUpPage.closeMessage();
-        System.out.println(email);
-        page.pause();
-    }*/
-
     @Test
     public void createAccountEmail() {
         SignUpPage signUpPage = new SignUpPage(page);
@@ -76,6 +66,7 @@ public class SignUpTest {
         signUpPage.validateSuccess();
     }
 
+    //This particular test is flacky, sometimes it works but sometimes it doesn't' since sometimes it popups the captcha
     @Test
     public void createAccountPhone() {
         SignUpPage signUpPage = new SignUpPage(page);
@@ -83,13 +74,16 @@ public class SignUpTest {
         signUpPage.closeMessage();
         signUpPage.phoneButton();
         signUpPage.setPhoneInput(number);
+        Sleeper.waitRandomInterval();
         signUpPage.acceptConditionsCheck();
         signUpPage.setPasswordInput("Abc123456");
+        Sleeper.waitRandomInterval();
         signUpPage.setReenterPasswordInput("Abc123456");
         signUpPage.setNoBonusCheck();
+        Sleeper.waitRandomInterval();
         signUpPage.createAccountButton();
-        page.pause();
-        signUpPage.checkCaptcha();
+        Sleeper.waitRandomInterval();
+        signUpPage.checkCode();
     }
 
 }

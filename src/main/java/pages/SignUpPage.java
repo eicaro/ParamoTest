@@ -6,7 +6,7 @@ import com.microsoft.playwright.options.AriaRole;
 
 import static com.microsoft.playwright.assertions.PlaywrightAssertions.assertThat;
 public class SignUpPage {
-
+    //Defining Locators
     private final Page page;
     private final Locator alertMessage;
     private final Locator facebookButton;
@@ -20,7 +20,6 @@ public class SignUpPage {
     private final Locator emailInput;
     private final Locator phoneInput;
     private final Locator acceptConditionsCheck;
-    private final Locator currencyDropDown;
     private final Locator passwordInput;
     private final Locator reenterPasswordInput;
     private final Locator promoCodeCheck;
@@ -28,9 +27,10 @@ public class SignUpPage {
     private final Locator noBonusCheck;
     private final Locator createAccountButton;
     private final Locator successMessage;
-    private final Locator captcha;
+    private final Locator codeVerification;
 
     public SignUpPage(Page page) {
+        //Giving value to the Locators
         this.page = page;
         this.alertMessage = page.getByRole(AriaRole.BUTTON,new Page.GetByRoleOptions().setName("Got it"));
         this.facebookButton = page.locator("#registration_form_1 > div.form__section.form__section--links > ul > li:nth-child(1) > a > i");
@@ -44,7 +44,6 @@ public class SignUpPage {
         this.emailInput = page.locator("[data-test='input-email']");
         this.phoneInput = page.locator("[data-test='input-phone']");
         this.acceptConditionsCheck = page.getByText("I unconditionally agree with Terms & Conditions, Data Policy, Cookie Policy and ");
-        this.currencyDropDown = page.locator("span").filter(new Locator.FilterOptions().setHasText("USD"));
         this.passwordInput = page.locator("[data-test = 'input-password']");
         this.reenterPasswordInput = page.locator("[data-test = 'input-password_confirmation']");
         this.promoCodeCheck = page.locator("label").filter(new Locator.FilterOptions().setHasText("Use a promo code"));
@@ -52,12 +51,13 @@ public class SignUpPage {
         this.noBonusCheck = page.locator("label").filter(new Locator.FilterOptions().setHasText("No bonus"));
         this.createAccountButton = page.locator("[data-test='control-submit']");
         this.successMessage = page.getByText("Registration successfully finished! Confirmation has been sent to you.");
-        this.captcha = page.locator("#rc-imageselect");
+        this.codeVerification = page.getByText("Verification code");
     }
+        //Method to navigate to the registration page
         public void navigate(){
             page.navigate("https://demo.casino/user/registration");
         }
-
+        //Methods to interact with the page
         public void closeMessage() {
         this.alertMessage.click();
     }
@@ -79,7 +79,7 @@ public class SignUpPage {
             this.telegramButton.click();
         }
         public void validateTelegram(){
-        assertThat(this.telegramError).isVisible();
+            assertThat(this.telegramError).isVisible();
         }
 
         public void emailButton(){
@@ -96,14 +96,11 @@ public class SignUpPage {
         public void setPhoneInput(String phone){
             this.phoneInput.fill(phone);
         }
-        public void checkCaptcha(){
-            assertThat(this.captcha).isVisible();
+        public void checkCode(){
+            assertThat(this.codeVerification).isVisible();
         }
         public void acceptConditionsCheck(){
             this.acceptConditionsCheck.click();
-        }
-        public void currencyDropDown(){
-            this.currencyDropDown.click();
         }
 
         public void setPasswordInput(String password){

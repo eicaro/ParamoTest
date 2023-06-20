@@ -1,5 +1,6 @@
 package utils;
 import java.util.Random;
+//Class to generate random data for creating records
 public abstract class IdentityGenerator {
     private static final String[] CHARACTERS = {"abcdefghijklmnopqrstuvwxyz", "123456789"};
     private static final int USERNAME_LENGTH = 10;

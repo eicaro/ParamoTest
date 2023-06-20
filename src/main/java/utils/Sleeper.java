@@ -1,7 +1,7 @@
 package utils;
 
 import java.util.Random;
-
+//Class used to generate random times in order to simulate human behaviour so the captcha does not show
 public abstract class Sleeper {
     private static final int MIN_SECONDS = 1;
     private static final int MAX_SECONDS = 5;

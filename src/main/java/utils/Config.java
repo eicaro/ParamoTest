@@ -1,7 +1,7 @@
 package utils;
 
 import com.microsoft.playwright.*;
-
+//Class to handle the configuration of the playwright
 public class Config {
     private static Playwright playwright;
     private static Browser browser;
